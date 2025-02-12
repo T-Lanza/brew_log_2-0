@@ -1,1 +1,24 @@
-[]
+[
+    {
+        "name": "Honningdrom",
+        "style": "Sack Mead",
+        "og": 1.098,
+        "fg": 0.99,
+        "start_date": "01/02/23",
+        "bottle_date": "02/23/24",
+        "yeast": "Lalvin D-47",
+        "ingredients": [],
+        "notes": []
+    },
+    {
+        "name": "Cythere",
+        "style": "Brandy",
+        "og": 1.128,
+        "fg": 0.985,
+        "start_date": "01/02/23",
+        "bottle_date": "02/23/24",
+        "yeast": "Safcider",
+        "ingredients": [],
+        "notes": []
+    }
+]

@@ -73,3 +73,12 @@ def get_date_num():
     year = str(now.year)
 
     return f"{month}/{day}/{year}"
+
+def get_date_id():
+    now = datetime.datetime.now()
+    
+    month = str(get_month_num(now.month))
+    day = str(now.day)
+    year = str(now.year)
+
+    return f"{year}{month}{day}"
