@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from get_date import get_date_num, get_date_id
 import json
-from constants import STYLES
+from constants import *
 
 with open('DATA/recipes.json', 'r') as file:
     recipes = json.load(file)
@@ -23,9 +23,11 @@ def update_style_dropdown(event, variety_dropdown, style_dropdown):
         style_dropdown.set("")
 
 def add_recipe(root, recipes):
+    ingredients = []
+
     # Make new window
     window = tk.Frame(root)
-    window.config(width=800, height=590, bd=2, relief="solid")
+    window.config(width=800, height=590, bd=5, relief="sunken")
     window.pack_propagate(False)
     window.place(x=710, y=90)
 
@@ -35,7 +37,7 @@ def add_recipe(root, recipes):
 
     # Farce
     farce = tk.Frame(window)
-    farce.config(width=500, height=590, bg="green")
+    farce.config(width=500, height=590)
     farce.pack(side="right")
 
     # Name Entry
@@ -54,7 +56,7 @@ def add_recipe(root, recipes):
 
     start_entry = tk.Entry(window, bd=2, relief="sunken")
     start_entry.config(font=("Helvetica", 12), width=9)
-    start_entry.insert(0, "2023-10-01")  # Placeholder for get_date_num()
+    start_entry.insert(0, get_date_num())
     start_entry.place(x=200, y=95)
 
     # Variety Dropdown
@@ -82,6 +84,51 @@ def add_recipe(root, recipes):
         "<<ComboboxSelected>>",
         lambda event: update_style_dropdown(event, variety_dropdown, style_dropdown)
         )
+    
+    # OG Section
+    og_label = tk.Label(window, text="OG (Original Gravity): ")
+    og_label.config(font=("Helvetica", 12))
+    og_label.place(x=10, y=199)
+
+    og_entry = tk.Entry(window, bd=2, relief="sunken")
+    og_entry.config(font=("Helvetica", 12), width=9)
+    og_entry.place(x=198, y=196)
+
+    # Yeast Section
+    yeast_label = tk.Label(window, text="Yeast: ")
+    yeast_label.config(font=("Helvetica", 12))
+    yeast_label.place(x=10, y=232)
+
+    yeast_entry = tk.Entry(window, bd=2, relief="sunken")
+    yeast_entry.config(font=("Helvetica", 12), width=9)
+    yeast_entry.place(x=198, y=229)
+
+    # Add Notes Section
+    notes_label = tk.Label(window, text="Preliminary Notes: ")
+    notes_label.config(font=("Helvetica", 12))
+    notes_label.place(x=10, y=265)
+
+    notes_entry = tk.Text(window, width=30, height=15, bd=2, relief="sunken")
+    notes_entry.config(bg="white", font=("Helvetica", 12), wrap="word")
+    notes_entry.place(x=7, y=298)
+
+    # Ingredients
+    add_ingredients_label = tk.Label(farce, text="Add Ingredients: ")
+    add_ingredients_label.config(font=("Helvetica", 12))
+    add_ingredients_label.place(x=25, y=67)
+
+    qty_input = tk.Entry(farce, bd=2, relief="sunken")
+    qty_input.config(font=("Helvetica", 12), width=3)
+    qty_input.place(x=25, y=94)
+
+    measure_dropdown = ttk.Combobox(farce, values=MEASURES)
+    measure_dropdown.config(width=5)
+    measure_dropdown.place(x=65, y=95)
+
+    add_ingredients_button = tk.Button(farce, text="+")
+    add_ingredients_button.place(x=450, y=92)
+
+
 
     
     

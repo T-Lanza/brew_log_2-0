@@ -1,5 +1,6 @@
 [
     {
+        "id": "bwizzle",
         "name": "Honningdrom",
         "style": "Sack Mead",
         "og": 1.098,
@@ -10,11 +11,12 @@
         "ingredients": [],
         "notes": []
     },
-    {
+    {   
+        "id": "bwizz",
         "name": "Cythere",
         "style": "Brandy",
         "og": 1.128,
-        "fg": 0.985,
+        "fg": 1.128,
         "start_date": "01/02/23",
         "bottle_date": "02/23/24",
         "yeast": "Safcider",

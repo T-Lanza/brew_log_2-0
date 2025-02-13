@@ -6,7 +6,7 @@ def nada():
     pass
 
 def get_abv(og, fg):
-    if not fg:
+    if fg == og:
         return "TBD"
     else:
         abv = round((og - fg) * 131.25, 1)
@@ -27,6 +27,7 @@ def home(root, main_display, recipes, menu_bar, main_label):
    
     counter = 1
     for recipe in recipes:
+        recipe_id = recipe["id"]
         # Create Blurb Frame
         recipe_blurb = tk.Frame(main_display.content_frame)
         recipe_blurb.config(width=590, height=45, bd="5", relief="raised")

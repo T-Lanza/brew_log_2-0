@@ -46,10 +46,7 @@ file_menu.add_separator()
 file_menu.add_command(label="Exit", command=root.quit)
 menu_bar.add_cascade(label="   File   ", menu=file_menu)
 
-edit_menu = tk.Menu(menu_bar, tearoff=False)
-edit_menu.add_command(label="Edit Recipe", command=nada)
-edit_menu.add_command(label="Edit Background", command=nada)
-menu_bar.add_cascade(label="   Edit   ", menu=edit_menu)
+menu_bar.add_command(label="   New    ", command=lambda: add_recipe(root, recipes))
 
 about_menu = tk.Menu(menu_bar, tearoff=False)
 about_menu.add_command(label=f"  BrewLog Version {version}  | 2025")
