@@ -3,12 +3,35 @@ from tkinter import ttk
 from get_date import get_date_num, get_date_id
 import json
 from constants import *
+from scrollframe import ScrollableFrame
 
 with open('DATA/recipes.json', 'r') as file:
     recipes = json.load(file)
 
 def submit():
     pass
+
+def add_ingredient(amount, format, entry, window, i_list):
+    qty = str(amount.get())
+    measure = str(format.get())
+    item = str(entry.get())
+
+    ingredient = {
+        "qty": qty,
+        "measure": measure,
+        "item": item
+    }
+
+    i_list.append(ingredient)
+
+    pane = tk.Label(window.content_frame, font=("Helvetica", 12))
+    pane.config(text=f"{qty}{measure} {item}", justify="left")
+    pane.config(padx=5, pady=5, bg="white")
+    pane.pack(side="top")
+
+    amount.delete(0, tk.END)
+    format.set("")
+    entry.delete(0, tk.END)
 
 
 def update_style_dropdown(event, variety_dropdown, style_dropdown):
@@ -24,7 +47,7 @@ def update_style_dropdown(event, variety_dropdown, style_dropdown):
 
 def add_recipe(root, recipes):
     ingredients = []
-
+    print(ingredients)
     # Make new window
     window = tk.Frame(root)
     window.config(width=800, height=590, bd=5, relief="sunken")
@@ -125,10 +148,23 @@ def add_recipe(root, recipes):
     measure_dropdown.config(width=5)
     measure_dropdown.place(x=65, y=95)
 
-    add_ingredients_button = tk.Button(farce, text="+")
-    add_ingredients_button.place(x=450, y=92)
+    ingredient_entry = tk.Entry(farce, bd=2, relief="sunken")
+    ingredient_entry.config(font=("Helvetica", 12), width=35)
+    ingredient_entry.insert(0, "Enter Ingredient here....")
+    ingredient_entry.place(x=125, y=94)
 
+    ingredient_list = ScrollableFrame(farce)
+    ingredient_list.config(width=445, height=440)
+    ingredient_list.place(x=25, y=123)
 
+    add_ingredients_button = tk.Button(farce, text="+", font=("Helvetica", 12))
+    add_ingredients_button.config(command=lambda: add_ingredient(qty_input,
+                                                                 measure_dropdown,
+                                                                 ingredient_entry,
+                                                                 ingredient_list,
+                                                                 ingredients))
+    add_ingredients_button.place(x=450, y=90)
 
+    # Submit Button
     
     
