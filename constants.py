@@ -5,7 +5,7 @@ STYLES = {
     "Booze": ["Whisky", "Brandy", "Rum", "Mezcal", "Vodka"]
 }
 
-MEASURES = ["oz", "lb", "g", "gal", "cup", "ml", "drop", "pinch"]
+MEASURES = ["tsp", "tbsp", "oz", "lb", "g", "gal", "cup", "ml", "drop", "pinch"]
 
 #print("")
 #print("Styles of Alcohol: ")

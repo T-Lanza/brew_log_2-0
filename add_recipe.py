@@ -3,13 +3,55 @@ from tkinter import ttk
 from get_date import get_date_num, get_date_id
 import json
 from constants import *
+from id_digits import id_digits
+from home import home
 from scrollframe import ScrollableFrame
 
 with open('DATA/recipes.json', 'r') as file:
     recipes = json.load(file)
 
-def submit():
-    pass
+def get_id(name):
+    date = get_date_id()
+    name_id = name[:3].upper()
+
+    return f"{date}{name_id}{id_digits()}"
+
+
+def submit(ingredients, 
+           name_entry, 
+           start_entry, 
+           style_dropdown, 
+           og_entry, 
+           yeast_entry, 
+           notes_entry,
+           recipes):
+    recipe = {
+        "id": get_id(name_entry.get()),
+        "name": name_entry.get(),
+        "style": style_dropdown.get(),
+        "status": "Fermenting",
+        "og": og_entry.get(),
+        "fg": og_entry.get(),
+        "start_date": start_entry.get(),
+        "bottle_date": "",
+        "yeast": yeast_entry.get(),
+        "ingredients": ingredients,
+        "notes": [],
+    }
+
+    added_notes = notes_entry.get("1.0", tk.END)
+    recipe_notes = {
+        "date": get_date_num(),
+        "note": added_notes
+    }
+    recipe["notes"].append(recipe_notes)
+
+    recipes.append(recipe)
+
+    with open('DATA/recipes.json', 'w') as file:
+        json.dump(recipes, file, indent=4)
+    
+
 
 def add_ingredient(amount, format, entry, window, i_list):
     qty = str(amount.get())
@@ -166,5 +208,13 @@ def add_recipe(root, recipes):
     add_ingredients_button.place(x=450, y=90)
 
     # Submit Button
-    
-    
+    submit_button = tk.Button(farce, text="Submit")
+    submit_button.config(font=("Helvetica", 12), command=lambda: submit(ingredients,
+                                                                        name_entry,
+                                                                        start_entry,
+                                                                        style_dropdown,
+                                                                        og_entry,
+                                                                        yeast_entry,
+                                                                        notes_entry,
+                                                                        recipes))
+    submit_button.place(x=25, y=12)
