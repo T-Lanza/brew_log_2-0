@@ -7,15 +7,6 @@ STYLES = {
 
 MEASURES = ["tsp", "tbsp", "oz", "lb", "g", "gal", "cup", "ml", "drop", "pinch"]
 
-#print("")
-#print("Styles of Alcohol: ")
-#print("----------------------")
-#for style in STYLES:
-    #print(style)
-
-#print("")
-#print("Varieties of Alcohol: ")
-#print("----------------------")
-#for style in STYLES:
-    #for variety in STYLES[style]:
-        #print(variety)
+STATUS = ["Primary Fermentation", "Secondary Fermentation",
+          "Tertiary Fermentation", "Ready to Distill", 
+          "Ready to Bottle", "Aging", "Good to Drink"]

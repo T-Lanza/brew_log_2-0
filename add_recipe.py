@@ -24,7 +24,9 @@ def submit(ingredients,
            og_entry, 
            yeast_entry, 
            notes_entry,
-           recipes):
+           recipes,
+           root,
+           window):
     recipe = {
         "id": get_id(name_entry.get()),
         "name": name_entry.get(),
@@ -51,6 +53,9 @@ def submit(ingredients,
     with open('DATA/recipes.json', 'w') as file:
         json.dump(recipes, file, indent=4)
     
+    for widget in root.winfo_children():
+        if widget == window:
+            widget.destroy()
 
 
 def add_ingredient(amount, format, entry, window, i_list):
@@ -216,5 +221,7 @@ def add_recipe(root, recipes):
                                                                         og_entry,
                                                                         yeast_entry,
                                                                         notes_entry,
-                                                                        recipes))
+                                                                        recipes,
+                                                                        root,
+                                                                        window))
     submit_button.place(x=25, y=12)
