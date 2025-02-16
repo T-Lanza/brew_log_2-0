@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from view_recipe import view_recipe
 from get_date import get_date_num
 
 def nada():
@@ -109,7 +110,7 @@ def home(root, main_display, recipes, menu_bar, main_label):
 
         # Go to Recipe Button
         blurb_button = tk.Button(recipe_blurb, text=" >> ")
-        blurb_button.config(width=3, command=nada)
+        blurb_button.config(width=3, command=lambda recipe_id=recipe_id: view_recipe(recipe_id))
         blurb_button.pack(side="right")
 
         # Insert blurb into Display
